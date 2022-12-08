@@ -15,7 +15,7 @@ router.get<string>("/api/healthchecker", (ctx: RouterContext<string>) => {
   ctx.response.body = {
     status: "success",
     message:
-      "Welcome to JWT Authentication in Deno with Asymmetric Cryptography",
+      "JWT Refresh Access Tokens in Deno with RS256 Algorithm",
   };
 });
 
