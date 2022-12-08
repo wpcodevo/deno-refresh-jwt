@@ -1,4 +1,5 @@
-import { MongoClient } from "../deps.ts";
+import { MongoClient,dotenvConfig } from "../deps.ts";
+dotenvConfig({ export: true, path: '.env' });
 
 const dbUri = Deno.env.get("MONGODB_URI") as unknown as string;
 const dbName = Deno.env.get("MONGO_INITDB_DATABASE") as unknown as string;
