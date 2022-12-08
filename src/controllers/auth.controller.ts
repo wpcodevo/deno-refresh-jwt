@@ -4,14 +4,6 @@ import { User } from "../models/user.model.ts";
 import { signJwt, verifyJwt } from "../utils/jwt.ts";
 import redisClient from "../utils/connectRedis.ts";
 
-export type IUser = {
-  id: string;
-  name: string;
-  email: string;
-  createdAt: Date;
-  updatedAt: Date;
-};
-
 const ACCESS_TOKEN_EXPIRES_IN = 15;
 const REFRESH_TOKEN_EXPIRES_IN = 60;
 
