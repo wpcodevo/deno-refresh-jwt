@@ -31,12 +31,12 @@ export const signJwt = async ({
     token_uuid,
   };
 
-  const crytoPrivateKey = await convertToCryptoKey({
+  const cryptoPrivateKey = await convertToCryptoKey({
     pemKey: atob(Deno.env.get(base64PrivateKeyPem) as unknown as string),
     type: "PRIVATE",
   });
 
-  const token = await create(header, payload, crytoPrivateKey!);
+  const token = await create(header, payload, cryptoPrivateKey!);
 
   return { token, token_uuid };
 };
@@ -49,12 +49,12 @@ export const verifyJwt = async <T>({
   base64PublicKeyPem: "ACCESS_TOKEN_PUBLIC_KEY" | "REFRESH_TOKEN_PUBLIC_KEY";
 }): Promise<T | null> => {
   try {
-    const crytoPublicKey = await convertToCryptoKey({
+    const cryptoPublicKey = await convertToCryptoKey({
       pemKey: atob(Deno.env.get(base64PublicKeyPem) as unknown as string),
       type: "PUBLIC",
     });
 
-    return (await verify(token, crytoPublicKey!)) as T;
+    return (await verify(token, cryptoPublicKey!)) as T;
   } catch (error) {
     console.log(error);
     return null;

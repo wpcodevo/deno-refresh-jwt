@@ -1,6 +1,7 @@
-import { Application, Router, logger, oakCors } from "./deps.ts";
+import { Application, Router, logger, oakCors, dotenvConfig } from "./deps.ts";
 import type { RouterContext } from "./deps.ts";
 import appRouter from "./routes/index.ts";
+dotenvConfig({ export: true, path: ".env" });
 
 const app = new Application();
 const router = new Router();
