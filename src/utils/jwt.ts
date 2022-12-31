@@ -56,8 +56,7 @@ export const verifyJwt = async <T>({
     });
 
     return (await verify(token, cryptoPublicKey!)) as T;
-  } catch (error) {
-    console.log(error);
+  } catch (_error) {
     return null;
   }
 };

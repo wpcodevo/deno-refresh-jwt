@@ -24,7 +24,7 @@ const signUpUserController = async ({
 
     const userId: string | Bson.ObjectId = await User.insertOne({
       name,
-      email,
+      email: email.toLowerCase(),
       password,
       createdAt,
       updatedAt,
@@ -64,11 +64,11 @@ const loginUserController = async ({
   cookies,
 }: RouterContext<string>) => {
   try {
-    const { email, password }: { email: string; password: string } =
+    const { email, password: _password }: { email: string; password: string } =
       await request.body().value;
 
     const message = "Invalid email or password";
-    const userExists = await User.findOne({ email });
+    const userExists = await User.findOne({ email: email.toLowerCase() });
     if (!userExists) {
       response.status = 401;
       response.body = {
